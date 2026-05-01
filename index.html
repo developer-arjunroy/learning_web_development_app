@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Learn Web Dev — Demo</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Learn Web Development</h1>
+    <div class="top-actions">
+      <button id="reset-progress" title="Reset progress">Reset Progress</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <nav class="sidebar" id="sidebar">
+      <div class="search">
+        <input id="searchInput" placeholder="Search lessons..." />
+      </div>
+      <div id="sectionsContainer"></div>
+    </nav>
+
+    <section class="content" id="content">
+      <div id="welcome" class="card">
+        <h2>Welcome</h2>
+        <p>Select a lesson from the left to begin. Each topic includes a short quiz you can take to test your knowledge.</p>
+      </div>
+
+      <article id="lesson" class="card hidden"></article>
+
+      <section id="quiz" class="card hidden">
+        <h3>Quiz</h3>
+        <div id="quizContainer"></div>
+      </section>
+
+      <section id="result" class="card hidden"></section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Demo site — content for learning purposes. Progress saved locally to your browser.</small>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
