@@ -1,0 +1,89 @@
+{
+  "sections": [
+    {
+      "id": "html",
+      "title": "HTML",
+      "description": "Structure web pages using HTML.",
+      "topics": [
+        {
+          "id": "html-basics",
+          "title": "HTML Basics",
+          "content": "<p>HTML (HyperText Markup Language) is the structure of the web. Use tags like &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;, &lt;img&gt; and &lt;div&gt; to structure content. Example: &lt;h1&gt;Hello&lt;/h1&gt;.</p><p>Block-level elements create sections, inline elements appear inside lines of text.</p>",
+          "quiz": [
+            {
+              "question": "Which tag is used for the top-level heading?",
+              "choices": ["&lt;head&gt;", "&lt;h1&gt;", "&lt;title&gt;", "&lt;header&gt;"],
+              "answerIndex": 1,
+              "explanation": "The &lt;h1&gt; tag denotes the top-level heading in an HTML document."
+            },
+            {
+              "question": "Which tag creates a hyperlink?",
+              "choices": ["&lt;a&gt;", "&lt;link&gt;", "&lt;href&gt;", "&lt;nav&gt;"],
+              "answerIndex": 0,
+              "explanation": "The &lt;a&gt; tag with the href attribute creates a hyperlink."
+            }
+          ]
+        },
+        {
+          "id": "html-forms",
+          "title": "Forms & Inputs",
+          "content": "<p>Forms collect user input. Use &lt;form&gt;, &lt;input&gt;, &lt;label&gt;, &lt;button&gt;, &lt;select&gt; and &lt;textarea&gt;. Always associate &lt;label&gt; with inputs using the for/id attributes for accessibility.</p>",
+          "quiz": [
+            {
+              "question": "Which attribute associates a label with an input?",
+              "choices": ["name", "for", "id", "type"],
+              "answerIndex": 1,
+              "explanation": "The label's 'for' attribute should match the input's 'id' to associate them."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "css",
+      "title": "CSS",
+      "description": "Style web pages with CSS.",
+      "topics": [
+        {
+          "id": "css-basics",
+          "title": "CSS Basics",
+          "content": "<p>CSS styles HTML. Use selectors and properties: <code>p { color: blue; }</code>. You can include CSS inline, in &lt;style&gt; tags or in external .css files.</p>",
+          "quiz": [
+            {
+              "question": "How do you select an element with id 'main' in CSS?",
+              "choices": ["main {}", ".main {}", "#main {}", "*main {}"],
+              "answerIndex": 2,
+              "explanation": "Use the hash symbol: #main selects the element with id='main'."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "js",
+      "title": "JavaScript",
+      "description": "Add interactivity with JavaScript.",
+      "topics": [
+        {
+          "id": "js-basics",
+          "title": "JS Basics",
+          "content": "<p>JavaScript is the language of the web for behavior. Use <code>const</code>, <code>let</code>, functions, and DOM APIs like <code>document.querySelector</code>.</p>",
+          "quiz": [
+            {
+              "question": "Which keyword declares a block-scoped variable?",
+              "choices": ["var", "let", "const", "both let and const"],
+              "answerIndex": 3,
+              "explanation": "Both let and const declare block-scoped variables; var is function-scoped."
+            },
+            {
+              "question": "Which method selects the first element that matches a CSS selector?",
+              "choices": ["getElementById", "querySelectorAll", "querySelector", "getElementsByClassName"],
+              "answerIndex": 2,
+              "explanation": "document.querySelector(selector) returns the first matching element."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
