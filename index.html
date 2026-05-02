@@ -7,8 +7,19 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
   <header class="topbar">
-    <h1>Learn Web Development</h1>
+    <div class="brand">
+      <svg class="logo" width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M8 4L2 12l6 8" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 4l6 8-6 8" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 6v12" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h1>Learn Web Development</h1>
+        <small class="tagline"><span id="typing" aria-live="polite"></span><span class="type-cursor">|</span></small>
+      </div>
+    </div>
     <div class="top-actions">
       <button id="reset-progress" title="Reset progress">Reset Progress</button>
     </div>
@@ -20,12 +31,20 @@
         <input id="searchInput" placeholder="Search lessons..." />
       </div>
       <div id="sectionsContainer"></div>
+      <div class="sidebar-footer">Tip: Try the quizzes and watch the preview on the right!</div>
     </nav>
 
     <section class="content" id="content">
-      <div id="welcome" class="card">
-        <h2>Welcome</h2>
-        <p>Select a lesson from the left to begin. Each topic includes a short quiz you can take to test your knowledge.</p>
+      <div id="welcome" class="card hero">
+        <div class="hero-left">
+          <h2>Welcome to your coding playground</h2>
+          <p>Pick a topic, read a short lesson, then test yourself with a quick quiz. Earn badges and celebrate wins!</p>
+          <div class="hero-actions">
+            <button class="btn" id="startFirst">Start HTML Basics</button>
+            <button class="btn secondary" id="exploreBtn">Explore Topics</button>
+          </div>
+        </div>
+        <pre class="hero-code"><code>&lt;!&gt; // Try a lesson — then press "Run Preview"</code></pre>
       </div>
 
       <article id="lesson" class="card hidden"></article>
@@ -37,6 +56,18 @@
 
       <section id="result" class="card hidden"></section>
     </section>
+
+    <aside class="preview" id="preview">
+      <div class="preview-header">
+        <div>Live Preview</div>
+        <div class="preview-actions">
+          <button class="btn small" id="runPreview">Run Preview</button>
+          <button class="btn small secondary" id="clearPreview">Clear</button>
+        </div>
+      </div>
+      <iframe id="previewFrame" sandbox="allow-scripts allow-forms" class="preview-frame" title="Preview"></iframe>
+      <div class="preview-console" id="previewConsole" aria-hidden="true"></div>
+    </aside>
   </main>
 
   <footer class="footer">
