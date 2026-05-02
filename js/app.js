@@ -1,4 +1,4 @@
-// Improved client-side learning app with live preview and celebration effects
+// Improved client-side learning app with live preview, theme/motion polish and celebration effects
 // Progress saved in localStorage under key 'lwd_progress'.
 
 const DATA_URL = 'data/lessons.json';
@@ -15,6 +15,7 @@ const previewFrame = document.getElementById('previewFrame');
 const runPreviewBtn = document.getElementById('runPreview');
 const clearPreviewBtn = document.getElementById('clearPreview');
 const startFirst = document.getElementById('startFirst');
+const typingEl = document.getElementById('typing');
 
 let data = null;
 let progress = loadProgress(); // { "<topicId>": {score: n, completed: true} }
@@ -25,6 +26,13 @@ fetch(DATA_URL)
   .then(json => {
     data = json;
     renderSections(data.sections);
+    // start typing and animate cards after initial render
+    startTyping([
+      'Build — Break — Learn. Code your way forward 🚀',
+      'Ship small projects. Learn fast.',
+      'Practice with quick quizzes and live preview.'
+    ], typingEl, 40, 900);
+    animateVisibleCards();
   })
   .catch(err => {
     console.error('Failed to load demo data', err);
@@ -67,6 +75,12 @@ function renderSections(sections){
     secWrap.appendChild(topicsDiv);
     sectionsContainer.appendChild(secWrap);
   });
+
+  // animate cards in with a small stagger
+  requestAnimationFrame(() => {
+    const cards = sectionsContainer.querySelectorAll('.card');
+    cards.forEach((c, i) => setTimeout(() => c.classList.add('animate-in'), i * 80));
+  });
 }
 
 // Open topic: show content and show quiz button
@@ -96,6 +110,8 @@ function openTopic(sectionIndex, topicIndex){
   document.getElementById('startQuiz').onclick = () => startQuiz(sectionIndex, topicIndex);
   document.getElementById('backToHome').onclick = () => resetView();
   document.getElementById('runInPreview').onclick = () => runPreviewFor(topic);
+  // animate lesson card in
+  setTimeout(() => lessonEl.classList.add('animate-in'), 30);
 }
 
 function resetView(){
@@ -254,6 +270,30 @@ searchInput.addEventListener('input', (e) => {
 // small helpers
 function stripTags(html){ return html.replace(/<[^>]+>/g, ''); }
 function truncate(str, n){ return str.length>n? str.slice(0,n)+'...':str; }
+
+function animateVisibleCards(){
+  // ensure all .card inside sectionsContainer animate in with a stagger when visible
+  const cards = sectionsContainer.querySelectorAll('.card');
+  cards.forEach((c, i) => setTimeout(() => c.classList.add('animate-in'), i*90));
+}
+
+// Typing animation (simple)
+function startTyping(phrases, el, speed = 50, pause = 800){
+  if(!el) return;
+  let pIndex = 0; let charIndex = 0; let forward = true;
+  el.textContent = '';
+  const step = () => {
+    const current = phrases[pIndex];
+    if(forward){
+      if(charIndex < current.length){ el.textContent += current[charIndex++]; setTimeout(step, speed); }
+      else { forward = false; setTimeout(step, pause); }
+    } else {
+      if(charIndex > 0){ charIndex--; el.textContent = current.slice(0,charIndex); setTimeout(step, Math.max(20, speed/2)); }
+      else { forward = true; pIndex = (pIndex+1) % phrases.length; setTimeout(step, 200); }
+    }
+  };
+  step();
+}
 
 // --- Confetti implementation (simple particles)
 const confettiCanvas = document.getElementById('confettiCanvas');

@@ -17,6 +17,13 @@ body{
   display:flex;
   flex-direction:column;
   min-height:100vh;
+  background-size:400% 400%;
+  animation: bgPan 12s ease-in-out infinite;
+}
+@keyframes bgPan{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 .topbar{
   padding:14px 22px;
@@ -28,7 +35,9 @@ body{
 }
 .brand{display:flex;gap:12px;align-items:center}
 .brand h1{margin:0;font-size:18px}
-.tagline{color:var(--muted);font-size:12px}
+.tagline{color:var(--muted);font-size:12px;display:inline-flex;align-items:center;gap:6px}
+.type-cursor{color:var(--accent);opacity:1;animation: blink 1s steps(2,start) infinite}
+@keyframes blink{50%{opacity:0}}
 .logo{background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:6px;border-radius:8px}
 .top-actions button{
   background:transparent;
@@ -38,7 +47,9 @@ body{
   cursor:pointer;
   color:var(--accent-2);
   font-weight:600;
+  transition:transform .16s ease,box-shadow .16s ease;
 }
+.top-actions button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.4)}
 .layout{
   display:flex;
   gap:18px;
@@ -82,7 +93,8 @@ body{
 .topic:hover{transform:translateX(6px);box-shadow:0 8px 30px rgba(0,0,0,0.5);background:linear-gradient(90deg, rgba(124,92,255,0.12), rgba(0,212,255,0.02));border:1px solid rgba(124,92,255,0.12)}
 .topic .status{font-size:12px;color:var(--muted)}
 .progress-bar{height:8px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden;margin-top:8px}
-.progress-bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%;transition:width .6s ease}
+.progress-bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%;transition:width .6s ease;background-size:200% 100%;animation: stripe 4s linear infinite}
+@keyframes stripe{0%{background-position:0% 0%}100%{background-position:200% 0%}}
 .sidebar-footer{color:var(--muted);font-size:12px;margin-top:10px}
 .content{
   flex:1;
@@ -94,12 +106,16 @@ body{
   box-shadow:0 6px 24px rgba(0,0,0,0.45);
   margin-bottom:16px;
   border:1px solid rgba(255,255,255,0.02);
+  opacity:0; transform:translateY(8px); /* prepare for entrance */
 }
+.card.animate-in{animation:fadeUp .6s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
 .hero{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .hero-left h2{margin:0 0 6px 0}
 .hero-left p{color:var(--muted);margin:0 0 12px 0}
 .hero-actions .btn{margin-right:8px}
-.hero-code{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;color:var(--muted);max-width:360px}
+.hero-code{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;color:var(--muted);max-width:360px;transform:translateY(-4px);animation: float 3.5s ease-in-out infinite}
+@keyframes float{0%{transform:translateY(-4px)}50%{transform:translateY(2px)}100%{transform:translateY(-4px)}}
 .hidden{display:none}
 .lesson-title{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .lesson-title h2{margin:0}
@@ -115,7 +131,9 @@ body{
   cursor:pointer;
   font-weight:700;
   box-shadow:0 8px 20px rgba(76,40,207,0.16);
+  transition:transform .18s ease,box-shadow .18s ease;
 }
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(76,40,207,0.22)}
 .btn.small{padding:6px 8px;font-size:13px}
 .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(124,92,255,0.12)}
 .quiz-question{margin-bottom:14px}
